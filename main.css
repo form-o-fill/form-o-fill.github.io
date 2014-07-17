@@ -163,20 +163,15 @@ li:before {
   margin-right: 10px;
 }
 
-.soon {
-  position: absolute;
-  top: 32%;
-  left: 25%;
-  font-size: 3rem;
-  line-height: 3rem;
-  color: red;
-  font-weight: 800;
-  transform: rotateZ(-45deg);
-  text-shadow: 2px 2px 2px #FFF;
-  width: 71%;
-}
-
 section {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.install {
+  margin-top: 15px;
+}
+
+.install-now {
+  color: #999;
 }
