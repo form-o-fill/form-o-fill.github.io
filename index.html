@@ -64,9 +64,17 @@
           <p>
             <a href="http://bit.ly/formofill"><img src="img/available-in-chrome-store.png" /></a>
           </p>
+          <p>
+            <a href="javascript:chrome.webstore.install()" id="install-button">Or install now by clicking here</a>
+          </p>
         </div>
       </section>
     </article>
+    <script>
+      if (chrome.app.isInstalled) {
+        document.getElementById('install-button').style.display = 'none';
+      }
+    </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="main.js"></script>
     <script>
