@@ -1,91 +1,54 @@
-<!DOCTYPE html>
-<html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Form-O-Fill: The programmable form filler for developers</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="google-site-verification" content="zl_8vEs8F1cwKElH-e6wB1gx9w9lk2fSghhKNM5uGLU" />
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="main.css">
-    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/iebbppibdpjldhohknhgjoapijellonp">
-  </head>
-  <body>
-    <a href="https://github.com/form-o-fill/form-o-fill-chrome-extension"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
-    <header>
-      <h1>Form-O-Fill</h1>
-      <h2>The programmable form filler for developers</h2>
-      <div class="icon icon-bucket"></div>
-    </header>
-    <article>
-      <section>
-        <p>
-          Form-O-Fill is a programmable form filler for the Chrome Browser.
-        </p>
-        <div class="figures">
-          <figure>
-            <img src="img/programmable-with-javascript.png" />
-            <figcaption>
-              Programmable with javascript thanks to the integrated ACE editor.
-            </figcaption>
-          </figure>
-          <figure>
-            <img src="img/extract-forms.png" />
-            <figcaption>
-              Extract form data by clicking the provided form overlay.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="figures">
-          <figure>
-            <img src="img/organize-in-tabs.png" />
-            <figcaption>
-              Organize your rules into neatly stacked tabs!
-            </figcaption>
-          </figure>
-          <figure>
-            <img src="img/extract-popup.png" />
-            <figcaption>
-              Stuck? Click the friendly popup button, swell!
-            </figcaption>
-          </figure>
-        </div>
-        <p>
-          And there is more:
-        </p>
-        <ul>
-          <li>Squeal with glee as Form-O-Fill report form filling errors back to you</li>
-          <li>Use a function to fetch data dynamically at the start of the rule executing process</li>
-          <li>Use static values or functions as the value for the field</li>
-          <li>Value functions can use the data fetched before!</li>
-          <li>Colorful and friendly help integrated</li>
-        </ul>
-        <div class="install">
-          <p>
-            <a href="http://bit.ly/formofill"><img src="img/available-in-chrome-store.png" /></a>
-          </p>
-          <!--<p>-->
-            <!--<a href="#" id="install-button">Or install now by clicking here</a>-->
-          <!--</p>-->
-        </div>
-      </section>
-    </article>
-    <script>
-      if (chrome.app.isInstalled) {
-        document.getElementById('install-button').style.display = 'none';
-      }
-    </script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="main.js"></script>
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-52919015-1', 'auto');
-    ga('send', 'pageview');
-    </script>
-  </body>
-</html>
+---
+layout: default
+---
+<section>
+  <p>
+    Form-O-Fill is a programmable form filler for the Chrome Browser.
+  </p>
+  <div class="figures">
+    <figure>
+      <img src="img/programmable-with-javascript.png" />
+      <figcaption>
+        Programmable with javascript thanks to the integrated ACE editor.
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="img/extract-forms.png" />
+      <figcaption>
+        Extract form data by clicking the provided form overlay.
+      </figcaption>
+    </figure>
+  </div>
+  <div class="figures">
+    <figure>
+      <img src="img/organize-in-tabs.png" />
+      <figcaption>
+        Organize your rules into neatly stacked tabs!
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="img/extract-popup.png" />
+      <figcaption>
+        Stuck? Click the friendly popup button, swell!
+      </figcaption>
+    </figure>
+  </div>
+  <p>
+    And there is more:
+  </p>
+  <ul>
+    <li>Squeal with glee as Form-O-Fill report form filling errors back to you</li>
+    <li>Use a function to fetch data dynamically at the start of the rule executing process</li>
+    <li>Use static values or functions as the value for the field</li>
+    <li>Value functions can use the data fetched before!</li>
+    <li>Colorful and friendly help integrated</li>
+  </ul>
+  <div class="install">
+    <p>
+      <a href="http://bit.ly/formofill"><img src="img/available-in-chrome-store.png" /></a>
+    </p>
+    <!--<p>-->
+      <!--<a href="#" id="install-button">Or install now by clicking here</a>-->
+      <!--</p>-->
+  </div>
+</section>

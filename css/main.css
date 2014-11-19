@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'formofill';
-  src:url('fonts/formofill.eot?78ljd6');
-  src:url('fonts/formofill.eot?#iefix78ljd6') format('embedded-opentype'),
-  url('fonts/formofill.woff?78ljd6') format('woff'),
-  url('fonts/formofill.ttf?78ljd6') format('truetype'),
-  url('fonts/formofill.svg?78ljd6#formofill') format('svg');
+  src:url('/fonts/formofill.eot?78ljd6');
+  src:url('/fonts/formofill.eot?#iefix78ljd6') format('embedded-opentype'),
+  url('/fonts/formofill.woff?78ljd6') format('woff'),
+  url('/fonts/formofill.ttf?78ljd6') format('truetype'),
+  url('/fonts/formofill.svg?78ljd6#formofill') format('svg');
   font-weight: normal;
   font-style: normal;
 }

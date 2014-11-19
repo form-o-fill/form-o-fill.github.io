@@ -1,0 +1,13 @@
+timezone: "Europe/Berlin"
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "default"
+  -
+    scope:
+      path: "pages"
+    values:
+      layout: "default"
