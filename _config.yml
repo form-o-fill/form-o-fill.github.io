@@ -1,5 +1,8 @@
 timezone: "Europe/Berlin"
 permalink: /:title
+name: "Form-O-Fill"
+description: "The programmable form filler for developers"
+url: "http://form-o-fill.github.io"
 defaults:
   -
     scope:
