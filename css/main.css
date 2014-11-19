@@ -115,6 +115,8 @@ p {
 
 article {
   padding: 5.5rem 1rem 0 1rem;
+  margin: 0 auto;
+  width: 1280px;
 }
 
 figure {
@@ -164,8 +166,17 @@ li:before {
 }
 
 section {
-  max-width: 800px;
-  margin: 0 auto;
+  display: inline-block;
+}
+
+section.content {
+  min-width: 800px;
+}
+
+section.sidebar {
+  vertical-align: top;
+  margin-left: 40px;
+  margin-top: 25px;
 }
 
 .install {
@@ -174,4 +185,13 @@ section {
 
 .install-now {
   color: #999;
+}
+
+span.time {
+  color: #999;
+  font-size: 11px;
+}
+
+h1 {
+  margin-bottom: 20px;
 }
