@@ -1,4 +1,6 @@
 ---
+title: "Coming soon"
+layout: default
 ---
 
 # Hi everybody
