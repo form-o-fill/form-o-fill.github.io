@@ -1,0 +1,27 @@
+{
+  "workflows": [
+    {
+      "id": 1,
+      "name": "Amazon Demo 1",
+      "steps": [
+        "Amazon Demo - Workflow step 1 (Homepage)",
+        "Amazon Demo - Workflow step 2 (Results)",
+        "Amazon Demo - Workflow step 3 (Details)"
+      ]
+    }
+  ],
+  "rules": {
+    "tabSettings": [
+      {
+        "id": "1",
+        "name": "Amazon 1"
+      }
+    ],
+    "rules": [
+      {
+        "code": "// Demo rules for the Form-O-Fill Blog Post\n// \"Using workflows for multi page automation\"\nvar rules = [{\n  url: \"http://www.amazon.com/\",\n  name: \"Amazon Demo - Workflow step 1 (Homepage)\",\n  fields: [{\n    selector: \"#twotabsearchtextbox\", // Search for something interesting\n    value: \"Stadium Throw Blanket World of Rainbow Unicorns\"\n  }, {\n    // The last action in a rule used in a workflow should normally\n    // change the page, eg. click on a submit link.\n    // Use 'Libs.b.click\" to click on the selected element\n    selector: \".nav-submit-input\",\n    value: Libs.h.click\n  }]\n}, {\n  url: /.*www.amazon.com\\/s\\/.*\\?url=search-alias/,\n  name: \"Amazon Demo - Workflow step 2 (Results)\",\n  fields: [{\n    selector: \"#result_0 a.s-access-detail-page\",\n    value: function($e) {\n      // Another way to change the page is to load a\n      // url via window.location\n      window.location.href = $e.attr(\"href\");\n      // return null so form-o-fill ignores that field\n      return null;\n    }\n  }]\n}, {\n  url: \"http://www.amazon.com/\",\n  name: \"Amazon Demo - Workflow step 3 (Details)\",\n  fields: [{\n    // Add to cart\n    selector: \"input#add-to-cart-button\",\n    value: Libs.h.click\n  }]\n}\n];",
+        "tabId": 1
+      }
+    ]
+  }
+}
