@@ -199,6 +199,8 @@ h1 {
 
 p img {
   vertical-align: middle;
+  padding: 10px;
+  border: 1px solid #eee;
 }
 
 form.demoform {
@@ -206,4 +208,13 @@ form.demoform {
   padding: 10px;
   border: 1px solid #999;
   border-radius: 3px;
+  margin: 10px;
+}
+
+img.fig {
+    padding:  5px;
+  
+    margin:  10px;
+    border: 1px solid #999;
+    border-radius: 3px;
 }
