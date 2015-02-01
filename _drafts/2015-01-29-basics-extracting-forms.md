@@ -36,3 +36,7 @@ Clicking on the notification will take you to the rules editor.
 Now just click the the link in the message at the top saying that there are extracted rules present and there you are!
 
 Happy extracting.
+
+## Bye the way:
+
+If Form-O-Fill fails to show an overlay for your form try to context-click on one of the fields in that form and choose: ![he context menu button](/img/form-extraction/form-extraction-context-menu.png)
