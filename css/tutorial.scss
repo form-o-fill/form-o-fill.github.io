@@ -1,0 +1,36 @@
+---
+---
+body.tutorial {
+  > header:first-of-type {
+    height: 5rem;
+  }
+
+  article {
+    padding: 0 0 0 2rem;
+    width: auto;
+  }
+
+  .introjs-prevbutton {
+    visibility: hidden;
+    width: 0;
+    display: none;
+  }
+
+  .introjs-skipbutton {
+    float: left;
+  }
+
+  .tuts {
+    display: none;
+  }
+
+  .introjs-helperLayer.hidden {
+    display: none;
+  }
+}
+
+.top-right {
+  position: absolute;
+  top: 0;
+  right: 47px;
+}

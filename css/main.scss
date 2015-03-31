@@ -1,3 +1,5 @@
+---
+---
 @font-face {
   font-family: 'formofill';
   src:url('/fonts/formofill.eot?78ljd6');
@@ -66,48 +68,49 @@ body * {
   padding: 0;
 }
 
-header {
+body > header:first-of-type {
   background: #030392; /* Old browsers */
   background: linear-gradient(to bottom,  #030392 0%,#1a38bc 100%); /* W3C */
   color: #fff;
   text-align: center;
   height: 10rem;
   box-shadow: 0 2px 3px 0 #999;
+
+  h1 {
+    font-size: 4rem;
+    margin: 0;
+    text-shadow: 1px 1px 2px #eee;
+  }
+
+  h2 {
+    font-weight: 300;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .icon {
+    font-size: 7rem;
+    color: #030392;
+    bottom: -0.2rem;
+    position: relative;
+    background-color: #fff;
+    width: 8.5rem;
+    border-radius: 50%;
+    text-align: center;
+    height: 8.5rem;
+    margin: auto;
+  }
+
+  .icon:before {
+    left: -0.3rem;
+    top: 1rem;
+    position: relative;
+    transform: rotateZ(0);
+    display: inline-block;
+    -webkit-animation: bucket0 3s 5s 2 alternate;
+  }
 }
 
-header h1 {
-  font-size: 4rem;
-  margin: 0;
-  text-shadow: 1px 1px 2px #eee;
-}
-
-header h2 {
-  font-weight: 300;
-  font-size: 1rem;
-  letter-spacing: 0.1rem;
-}
-
-header .icon {
-  font-size: 7rem;
-  color: #030392;
-  bottom: -0.2rem;
-  position: relative;
-  background-color: #fff;
-  width: 8.5rem;
-  border-radius: 50%;
-  text-align: center;
-  height: 8.5rem;
-  margin: auto;
-}
-
-header .icon:before {
-  left: -0.3rem;
-  top: 1rem;
-  position: relative;
-  transform: rotateZ(0);
-  display: inline-block;
-  -webkit-animation: bucket0 3s 5s 2 alternate;
-}
 
 p {
   margin-bottom: 10px;
@@ -155,14 +158,17 @@ ul {
   list-style: none;
 }
 
-li {
-  padding: 5px 0;
-}
 
-li:before {
-  font-family: formofill;
-  content: "\e600";
-  margin-right: 10px;
+ul.icons {
+  li {
+    padding: 5px 0;
+  }
+
+  li:before {
+    font-family: "formofill";
+    content: "\e600";
+    margin-right: 10px;
+  }
 }
 
 section {
@@ -212,9 +218,8 @@ form.demoform {
 }
 
 img.fig {
-    padding:  5px;
-  
-    margin:  10px;
-    border: 1px solid #999;
-    border-radius: 3px;
+  padding:  5px;
+  margin:  10px;
+  border: 1px solid #999;
+  border-radius: 3px;
 }
