@@ -1,6 +1,9 @@
-/*global jQuery introJs window*/
+/*global jQuery introJs window chrome*/
 (function tutorialScope(jQuery) {
   "use strict";
+
+  var extensionIds = ["bhokckolmdbgobnjlifcfigiihggcikh", "iebbppibdpjldhohknhgjoapijellonp", "kjcjehdmpjhomclllannjenijddhajfi"];
+
   var Tutorial = function() {
     this.steps = this.loadSteps();
     this.intro = this.initIntroJs();
@@ -16,6 +19,7 @@
         element: data.element,
         position: data.position,
         trigger: data.trigger,
+        tutorial: data.tutorial,
         buttons: (data.buttons === "false" ? false : true),
         overlay: (data.overlay === "false" ? false : true),
         index: index
@@ -58,6 +62,13 @@
       var stepIndex = tutorial.intro._currentStep;
       var step = tutorial.intro._introItems[stepIndex];
       /*eslint-enable no-underscore-dangle */
+
+      // Send active tutorial number to Form-O-Fill extension
+      if(typeof step.tutorial !== "undefined") {
+        extensionIds.forEach(function(extensionId) {
+          chrome.runtime.sendMessage(extensionId, { action: "activateTutorialOnOpenOptions", message: step.tutorial});
+        });
+      }
 
       var $helper = jQuery(".introjs-helperLayer");
       if(!step.overlay) {
