@@ -79,12 +79,12 @@
 
       // Send active tutorial number to Form-O-Fill extension
       if(typeof step.tutorial !== "undefined") {
-        Tutorial.sendMessage("activateTutorialOnOpenOptions", step.tutorial);
+        Tutorial.sendToExtension("activateTutorialOnOpenOptions", step.tutorial);
       }
 
       // Send import rules request to Form-O-Fill
       if(step.importRules) {
-        Tutorial.sendMessage("importDump", step.importRules);
+        Tutorial.sendToExtension("importDump", step.importRules);
       }
 
       var $helper = jQuery(".introjs-helperLayer");
