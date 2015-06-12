@@ -1,4 +1,4 @@
-/*global jQuery introJs window chrome*/
+/*global jQuery introJs window chrome document */
 (function tutorialScope(jQuery) {
   "use strict";
 
@@ -22,6 +22,7 @@
         tutorial: data.tutorial,
         buttons: (data.buttons === "false" ? false : true),
         overlay: (data.overlay === "false" ? false : true),
+        importRules: (typeof data.importRules !== "undefined" ? document.querySelector("textarea" + data.importRules).textContent : null),
         index: index
       };
 
@@ -56,6 +57,19 @@
     };
   };
 
+
+  // Send a message to the extension
+  Tutorial.sendToExtension = function(action, message) {
+    var messageHash = {
+      action: action,
+      message: message
+    };
+
+    extensionIds.forEach(function(extensionId) {
+      chrome.runtime.sendMessage(extensionId, messageHash);
+    });
+  };
+
   Tutorial.prototype.onAfterChangeHandler = function(tutorial) {
     return function() {
       /*eslint-disable no-underscore-dangle */
@@ -65,9 +79,12 @@
 
       // Send active tutorial number to Form-O-Fill extension
       if(typeof step.tutorial !== "undefined") {
-        extensionIds.forEach(function(extensionId) {
-          chrome.runtime.sendMessage(extensionId, { action: "activateTutorialOnOpenOptions", message: step.tutorial});
-        });
+        Tutorial.sendMessage("activateTutorialOnOpenOptions", step.tutorial);
+      }
+
+      // Send import rules request to Form-O-Fill
+      if(step.importRules) {
+        Tutorial.sendMessage("importDump", step.importRules);
       }
 
       var $helper = jQuery(".introjs-helperLayer");
@@ -98,6 +115,7 @@
 
     return intro;
   };
+
   Tutorial.prototype.start = function() {
     var tutorial = this;
     jQuery(".tut-tour-start").on("click", function() {
