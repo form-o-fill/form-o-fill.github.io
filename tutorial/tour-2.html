@@ -4,17 +4,7 @@ layout: tutorial
 <h1>Tour 2: Using rules</h1>
 
 <textarea class="rules" id="rules1">{
-  "workflows": [
-    {
-      "id": 1,
-      "name": "Amazon Demo 1",
-      "steps": [
-        "Amazon Demo - Workflow step 1 (Homepage)",
-        "Amazon Demo - Workflow step 2 (Results)",
-        "Amazon Demo - Workflow step 3 (Details)"
-      ]
-    }
-  ],
+  "workflows": [],
   "rules": {
     "tabSettings": [
       {
@@ -24,12 +14,32 @@ layout: tutorial
     ],
     "rules": [
       {
-        "code": "var rules = [{\n  \"url\": /tutorial\\/tour-1\\.html/,\n  \"name\": \"Rule for tour 2\",\n  \"fields\": [{\n    \"selector\": \"input[name='text']\",\n    \"value\": \"input field content\"\n  }, {\n    \"selector\": \"input[name='checkbox-value']\",\n    \"value\": true\n  }, {\n    \"selector\": \"input[name='radio']\",\n    \"value\": \"A pressed radio button\"\n  }, {\n    \"selector\": \"select[name='select-multi']\",\n    \"value\": [\"Option 2\", \"Option 3\"]\n  }]\n}\n];",
+        "code": "var rules = [{\n  \"url\": /tutorial\\/tour-2\\.html/,\n  \"name\": \"Rule for tour 2\",\n  \"fields\": [{\n    \"selector\": \"input[name='text']\",\n    \"value\": \"input field content\"\n  }, {\n    \"selector\": \"input[name='checkbox-value']\",\n    \"value\": true\n  }, {\n    \"selector\": \"input[name='radio']\",\n    \"value\": \"A radio button\"\n  }, {\n    \"selector\": \"select[name='select-multi']\",\n    \"value\": [\"Option 2\", \"Option 3\"]\n  }]\n}\n];",
         "tabId": 1
       }
     ]
   }
-}</textarea>
+}
+</textarea>
+<textarea class="rules" id="rules2">
+{
+  "workflows": [],
+  "rules": {
+    "tabSettings": [
+      {
+        "id": "1",
+        "name": "Rules Tour 2"
+      }
+    ],
+    "rules": [
+      {
+        "code": "var rules = [{\n  \"url\": /tutorial\\/tour-2\\.html/,\n  \"name\": \"First rule for tour 2\",\n  \"fields\": [{\n    \"selector\": \"input[name='text']\",\n    \"value\": \"input field content\"\n  }, {\n    \"selector\": \"input[name='checkbox-value']\",\n    \"value\": true\n  }, {\n    \"selector\": \"input[name='radio']\",\n    \"value\": \"A radio button\"\n  }, {\n    \"selector\": \"select[name='select-multi']\",\n    \"value\": [\"Option 2\", \"Option 3\"]\n  }]\n}, {\n  \"url\": /tutorial\\/tour-2\\.html/,\n  \"name\": \"Second rule for tour 2\",\n  \"fields\": [{\n    \"selector\": \"input[name='text']\",\n    \"value\": \"input field content (again)\"\n  }, {\n    \"selector\": \"input[name='checkbox-value']\",\n    \"value\": true\n  }, {\n    \"selector\": \"input[name='radio']\",\n    \"value\": \"A radio button\"\n  }, {\n    \"selector\": \"select[name='select-multi']\",\n    \"value\": [\"Option 1\", \"Option 3\"]\n  }]\n}\n];",
+        "tabId": 1
+      }
+    ]
+  }
+}
+</textarea>
 
 <div class="alert alert-warning" role="alert">
   <strong>This is a live tutorial.</strong>
@@ -37,38 +47,37 @@ layout: tutorial
 </div>
 
 <div class="panel panel-default">
-  <div class="panel-heading">Assuming this basic &lt;form&gt;:</div>
+  <div class="panel-heading">Filling forms</div>
   <div class="panel-body">
     <form action="#">
       <label class="input-group">
         An input element:
-        <input class="form-control" type="text" name="text" value="input field content" />
+        <input class="form-control" type="text" name="text" value="to be filled by rule" />
       </label>
       <label class="input-group">
-        A pressed radio button:
-        <input type="radio" name="radio" value="A pressed radio button" checked />
+        A radio button to be checked:
+        <input type="radio" name="radio" value="A radio button" />
       </label>
       <label class="input-group">
-        A Checkbox:
-        <input type="checkbox" name="checkbox-value" value="checkbox" checked />
+        Checkbox:
+        <input type="checkbox" name="checkbox-value" value="checkbox" />
       </label>
       <label class="input-group">
         Select (multiple)
         <select multiple name="select-multi">
           <option>Option 1</option>
-          <option selected>Option 2</option>
-          <option selected>Option 3</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
         </select>
       </label>
-      <button type="submit" class="btn btn-default">Submit</button>
     </form>
   </div>
 </div>
 
-<button type="button" class="btn btn-lg btn-success tut-tour-start">Start Tour 1 : Extracting rules</button>
+<button type="button" class="btn btn-lg btn-success tut-tour-start">Start Tour 2 : Using rules</button>
 
 <div class="tuts">
-  <div class="step" data-element=".alert-warning" data-import-rules="#rules1">
+  <div class="step" data-element=".alert-warning">
     <strong>Hello!</strong>
     <p>
       Before starting: Have you read this important message?
@@ -76,11 +85,16 @@ layout: tutorial
   </div>
 
   <div class="step" data-element="form">
-    This will be the form we will work with. It contains the usual field types in this case a textfield , a radiobutton, a checkbox and a select field.
+    This will be the form we will work with. It contains the fields from <a href="tour-1.html">Tour 1</a> but in a non-selected / filled state.
   </div>
 
-  <div class="step" data-element="form">
-    It has been pre-filled for this tutorial.
+  <div class="step" data-element="form" data-import-rules="#rules1">
+    <p>
+      Let's fill that form with the saved values.
+    </p>
+    <p>
+      I just imported the necessary rules into Form-O-Fill.
+    </p>
   </div>
 
   <div class="step" data-element=".top-right" data-position="bottom-right-aligned" data-overlay="false">
@@ -89,49 +103,49 @@ layout: tutorial
     </p>
     <p>
       Somewhere up here should be the Form-O-Fill action icon.<br />
-      It looks like this:
-      <img src="/img/tutorial/button-when-not-matching.png" />
-      <strong>Don't click it just yet.</strong>
+      It should looks like this:
+      <img src="/img/tutorial/form-button-one-match.png" />
+    </p>
+  </div>
+
+  <div class="step" data-element=".top-right" data-position="bottom-right-aligned" data-overlay="false">
+    <p>
+      The <strong>blue badge</strong> shows the number of rules and workflows that match the current url.
     </p>
   </div>
 
   <div class="step" data-element=".top-right" data-position="bottom-right-aligned" data-buttons="false" data-overlay="false">
     <p>
-      When you click it you will see the browser action popup.
-    </p>
-    <img src="/img/tutorial/form-extraction-popup.png" />
-    <p>
-      To extract form data from the page, click the "Extract" link.
+      If you click the button when Form-O-Fill has only one matching rule it will instantly execute that rule and start filling the form
     </p>
     <p>
       <strong>Do that now!</strong>
     </p>
   </div>
 
-  <div class="step" data-element=".form-o-fill-overlay-form" data-trigger="+form-o-fill-overlay-form" data-overlay="false" data-buttons="false">
+  <div class="step" data-element="form" data-trigger="?Form-O-Fill is working, please wait!">
     <p>
-      This red-ish element is used by Form-O-Fill to mark extractable <code>form</code> elements.
-    </p>
-    <p>
-      Every detected form element will be extracted if you click on the red area.
-    </p>
-    <p>
-      <strong>Do that now!</strong>
+      As you can see the fields are filled in as defined in the rule.
     </p>
   </div>
   
-  <div class="step" data-tutorial="1" data-element=".top-right" data-trigger="-form-o-fill-overlay-form" data-position="bottom-right-aligned" data-overlay="false">
+  <div class="step" data-element="form" data-position="bottom-right-aligned" data-import-rules="#rules2" data-buttons="false">
     <p>
-      Form-O-Fill has now extracted the <code>form</code> fields and is ready to work with them:
+      When there are more than one rule available for that url you need to choose which rule to execute.
     </p>
-    <img src="/img/tutorial/form-extraction-notification.png" />
+    <img src="/img/tutorial/form-button-multiple-matches.png" />
     <p>
-      You can now click the notification or open the browser action popup again and click on "Options".
-    </p>
-    <img src="/img/tutorial/form-extraction-popup-2.png" />
-    <p>
-      <strong>Do that now!</strong> This will open the options page in a new tab.
+      Click the button and choose <strong>"Second rule for tour 2"</strong> by clicking the text.
     </p>
   </div>
 
+  <div class="step" data-element="form" data-trigger="*input[type=text]:input field content (again)">
+    <p>
+      Lastly there could be workflows matching the current url. If that is the case they will be displayed in <strong style="color: #192E98;">blue</strong> inside the popup like this:
+    </p>
+    <img src="/img/tutorial/form-filling-popup-1.png" />
+    <p>
+      Thats all for this tutorial!
+    </p>
+  </div>
 </div>

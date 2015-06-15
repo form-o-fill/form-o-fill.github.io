@@ -119,9 +119,10 @@
   Tutorial.prototype.start = function() {
     var tutorial = this;
     jQuery(".tut-tour-start").on("click", function() {
+      Tutorial.sendToExtension("activateTutorialOnOpenOptions", 0);
       tutorial.intro.start();
+      tutorial.observeDomChanges();
     });
-    this.observeDomChanges();
   };
 
   Tutorial.prototype.mutatedClassNames = function(nodeList) {
@@ -140,43 +141,111 @@
     return mutClasses;
   };
 
+  // This returns n array of text changed by the added DOM nodes
+  Tutorial.prototype.mutatedTexts = function(nodeList) {
+    var mutTexts = [];
+
+    for(var i = 0; i < nodeList.length; i++) {
+      if(nodeList[i].textContent) {
+        mutTexts.push(nodeList[i].textContent);
+      }
+    }
+    return mutTexts;
+  };
+
   Tutorial.prototype.domObserver = function(tutorial) {
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
     return new MutationObserver(function(mutations) {
       var added = [];
       var removed = [];
+      var attrs = [];
+      var contentAdded = [];
 
       mutations.forEach(function (mutation) {
         added = added.concat(tutorial.mutatedClassNames(mutation.addedNodes));
+        contentAdded = contentAdded.concat(tutorial.mutatedTexts(mutation.addedNodes));
         removed = removed.concat(tutorial.mutatedClassNames(mutation.removedNodes));
+        if(typeof mutation.target.style !== "undefined") {
+          attrs = attrs.concat(mutation.target.style.cssText);
+        }
       });
 
+      /*eslint-disable complexity */
       tutorial.steps.every(function (step) {
         if(typeof step.trigger !== "undefined") {
-          var checkAdded = (step.trigger[0] === "+" ? true : false);
+          var typeToCheck = step.trigger[0];
           var triggerCls = step.trigger.substr(1);
 
-          if(checkAdded && added.indexOf(triggerCls) !== -1) {
-            // Trigger Step
+          if(added.indexOf(triggerCls) !== -1) {
+            // + : element with class is visible
+            if(typeToCheck === "+") {
+              // Trigger Step
+              tutorial.intro.goToStep(step.index + 1);
+              return false;
+            }
+
+            // - : element with class is invisible
+            if(typeToCheck === "-") {
+              // Trigger Step
+              tutorial.intro.goToStep(step.index + 1);
+              return false;
+            }
+          }
+
+          // elements style attributes change
+          if(typeToCheck === "/") {
+            var styleToCheckMatch = triggerCls.match(/^(.*?)\[(.*?)\]/);
+            var found = attrs.filter(function (attr) {
+              return attr.indexOf(styleToCheckMatch[2]) > -1;
+            });
+
+            if(found.length > 0) {
+              tutorial.intro.goToStep(step.index + 1);
+              return false;
+            }
+          }
+
+          // triggers when text gets visible SOMEWHERE ON THE PAGE
+          // does not work with form field
+          if(typeToCheck === "?" && contentAdded.indexOf(triggerCls) > -1) {
             tutorial.intro.goToStep(step.index + 1);
             return false;
           }
 
-          if(!checkAdded && removed.indexOf(triggerCls) !== -1) {
-            // Trigger Step
-            tutorial.intro.goToStep(step.index + 1);
-            return false;
+          // *input[type=text]:input field content (again)
+          // Checks for selector val() == "text"
+          if(typeToCheck === "*") {
+            var selectorAndContent = triggerCls.split(":");
+            var $e = jQuery(selectorAndContent[0]);
+            if($e.val().indexOf(selectorAndContent[1]) > -1) {
+              $e.data("trigger", "");
+              step.trigger = "";
+              tutorial.intro.goToStep(step.index + 1);
+              return false;
+            }
           }
         }
+        /*eslint-enable complexity*/
+
         return true;
       });
     });
   };
 
   Tutorial.prototype.observeDomChanges = function() {
-    this.domObserver(this).observe(window.document.querySelector("body"), {
-      childList: true,
-      subtree: true
+    var observer = this.domObserver(this);
+    var observeDomElements = [ "body" ].map(function(selector) {
+      return document.querySelector(selector);
+    });
+
+    observeDomElements.forEach(function (observeDomElement) {
+      observer.observe(observeDomElement, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        characterData: true,
+        attributeFilter: ["style"]
+      });
     });
   };
 
