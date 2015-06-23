@@ -84,6 +84,7 @@
 
       // Send import rules request to Form-O-Fill
       if(step.importRules) {
+        Tutorial.sendToExtension("backupCurrentRules");
         Tutorial.sendToExtension("importDump", step.importRules);
       }
 
