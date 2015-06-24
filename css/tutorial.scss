@@ -1,6 +1,10 @@
 ---
 ---
 body.tutorial {
+  * {
+    box-sizing: border-box;
+  }
+
   > header:first-of-type {
     height: 5rem;
   }
@@ -33,6 +37,17 @@ body.tutorial {
   }
 
   .tut-intro {
+    float: left;
+    width: 49.3%;
+    height: 182px;
+
+    &:nth-child(even) {
+      margin-left: 10px;
+    }
+
+    .panel-heading {
+      font-weight: bold;
+    }
   }
 
 }
