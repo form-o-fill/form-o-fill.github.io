@@ -60,6 +60,7 @@
 
   // Send a message to the extension
   Tutorial.sendToExtension = function(action, message) {
+
     var messageHash = {
       action: action,
       message: message
@@ -84,7 +85,6 @@
 
       // Send import rules request to Form-O-Fill
       if(step.importRules) {
-        Tutorial.sendToExtension("backupCurrentRules");
         Tutorial.sendToExtension("importDump", step.importRules);
       }
 
@@ -120,6 +120,7 @@
   Tutorial.prototype.start = function() {
     var tutorial = this;
     jQuery(".tut-tour-start").on("click", function() {
+      Tutorial.sendToExtension("backupCurrentRules");
       Tutorial.sendToExtension("activateTutorialOnOpenOptions", 0);
       tutorial.intro.start();
       tutorial.observeDomChanges();
