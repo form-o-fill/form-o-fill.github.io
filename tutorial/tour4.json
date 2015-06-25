@@ -1,1 +1,1 @@
-{ setByJson: "I was set by an JSON" }
+{ "setByJson": "I was set by an JSON" }
