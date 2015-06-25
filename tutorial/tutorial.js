@@ -253,4 +253,7 @@
 
   window.tutorial = new Tutorial().start();
 
+  jQuery("header").on("click", function() {
+    window.location.href = "/";
+  });
 })(jQuery);

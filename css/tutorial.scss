@@ -7,6 +7,9 @@ body.tutorial {
 
   > header:first-of-type {
     height: 5rem;
+    h1 {
+      cursor: pointer;
+    }
   }
 
   article {
