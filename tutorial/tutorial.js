@@ -219,6 +219,16 @@
           if(typeToCheck === "*") {
             var selectorAndContent = triggerCls.split(":");
             var $e = jQuery(selectorAndContent[0]);
+
+            var regex = selectorAndContent[1].match(/^\/(.*?)\/$/);
+            if(regex !== null && new RegExp(regex[1]).test($e.val())) {
+              // regex matching!
+              $e.data("trigger", "");
+              step.trigger = "";
+              tutorial.intro.goToStep(step.index + 1);
+              return false;
+            }
+
             if($e.val().indexOf(selectorAndContent[1]) > -1) {
               $e.data("trigger", "");
               step.trigger = "";

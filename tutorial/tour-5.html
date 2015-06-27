@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 ---
-<h1>Tour 4: Using build in libaries</h1>
+<h1>Tour 5: Using build-in libaries</h1>
 
 <textarea class="rules" id="rules1">{
   "workflows": [],
@@ -9,12 +9,12 @@ layout: tutorial
     "tabSettings": [
       {
         "id": "1",
-        "name": "Rules Tour 4"
+        "name": "Rules Tour 5"
       }
     ],
     "rules": [
       {
-        "code": "var rules = [{\n  \"url\": /tutorial\\/tour-4\\.html/,\n  \"name\": \"Tour 4 : Before function 101\",\n  \"before\": function(resolve, context) {\n    var data = {\n      setInBeforeFunction: \"Data from before function\"\n    };\n    resolve(data);\n  },\n  \"fields\": [{\n    \"selector\": \"input[name='text']\",\n    \"value\": function($e, data) {\n      return data.setInBeforeFunction;\n    }\n  }]\n}\n];",
+        "code": "var rules = [{\n  \"url\": /tutorial\\/tour-5\\.html/,\n  \"name\": \"Tour 5 : Using build.in libraries (chance.js)\",\n  \"fields\": [{\n    \"selector\": \"input[name='text']\",\n    \"value\": function($e, data) {\n      // Read the current fields content\n      var current = $e.val();\n      return current + \" \" + Libs.chance.name();\n    }\n  }]\n}\n];",
         "tabId": 1
       }
     ]
@@ -27,19 +27,22 @@ layout: tutorial
 </div>
 
 <div class="panel panel-default">
-  <div class="panel-heading">Before function 101</div>
+  <div class="panel-heading">Using build-in libraries</div>
   <div class="panel-body">
-    <p>This tutorial will introduce you to before functions.</p>
     <p>
-      The main usage is the preparation of data before the rule execution starts.
+      This tutorial will show you the two build-in libraries <a href="http://chancejs.com" target="_blank">chance.js</a> and <a href="http://momentjs.com" target="_blank">moment.js</a>
     </p>
     <p>
-      In this tutorial we will generate data and even request dynamic data from a remote source via jQuery.
+      <strong>chance.js</strong> can be used for prepare random values and <strong>moment.js</strong> is useful when calculation and formatting date fields.
     </p>
     <form action="#">
       <label class="input-group">
         An input element:
-        <input class="form-control" type="text" name="text" value="to be filled by the rule" />
+        <input class="form-control" type="text" name="text" value="" />
+      </label>
+      <label class="input-group">
+        A date field:
+        <input class="form-control" type="date" name="date" value="" />
       </label>
     </form>
     <p>
@@ -47,44 +50,56 @@ layout: tutorial
     </p>
   </div>
 </div>
-
-<button type="button" class="btn btn-lg btn-success tut-tour-start">Start Tour 4 : Before function 101</button>
+<button type="button" class="btn btn-lg btn-success tut-tour-start">Start Tour 5 : Using build-in functions</button>
 
 <div class="tuts">
   <div class="step" data-element=".alert-warning">
-    <strong>Welcome back!</strong>
+    <strong>Welcome!</strong>
     <p>
       Before starting: Have you read this important message?
     </p>
   </div>
 
-  <div class="step" data-element="form">
-    <p>
-      Lets learn about <strong>before functions</strong>.
-    </p>
-    <p>
-      They are named <strong>before</strong> because these functions get executed once per rule before the rule starts to execute.
-    </p>
-    <p>
-      Every rule can have multiple of these but using one is usually easier.
-    </p>
-    <p>
-      This <code>input</code> element will be filled via a combination of <strong>before</strong> and <strong>value function</strong>.
-    </p>
-  </div>
-
   <div class="step" data-element="form" data-import-rules="#rules1">
     <p>
-      I just imported the corresponding rule into Form-O-Fill.
+      Lets start by using <strong>chance.js</strong> to fill that <code>input</code> field.
     </p>
     <p>
-      Let's have a look.
+      I have imported a rule that uses the library.    
     </p>
   </div>
 
-  <div class="step" data-tutorial="4" data-element=".top-right" data-position="bottom-right-aligned" data-buttons="false" data-overlay="false">
+  <div class="step" data-element=".top-right" data-position="bottom-right-aligned" data-buttons="false" data-overlay="false">
     <p>
-      To access the options page <strong>right click on the icon</strong> and choose <strong>Options</strong>.
+      Somewhere up here should be the Form-O-Fill action icon.<br />
+      It should looks like this:
+      <img src="/img/tutorial/form-button-one-match.png" />
+    </p>
+    <p><strong>Press it now</strong></p>
+  </div>
+
+  <div class="step" data-element="input[type=text]" data-position="right" data-trigger="*input[type=text]:/[A-Z][a-z]+ [A-Z][a-z]+/" data-buttons="false">
+    <p>
+      <strong>chance.js</strong> created this name just for you :)
+    </p>
+    <p>
+      Press the action icon again!
+    </p>
+  </div>
+
+  <div class="step" data-element="input[type=text]" data-position="right" data-trigger="*input[type=text]:/[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+/">
+    <p>
+      You just appended another random name to the field.
+    </p>
+    <p>
+      Let's have a look at the code.
+    </p>
+  </div>
+ 
+  <div class="step" data-buttons="false" data-tutorial="3" data-element=".top-right" data-position="bottom-right-aligned" data-overlay="false">
+    <p>
+      To access the options page when only one rule matches you must
+      <strong>right click on the icon</strong> and choose <strong>Options</strong>.
     </p>
     <p>
       It looks like this in the german version of chrome:
@@ -94,6 +109,5 @@ layout: tutorial
       <strong>Do that now!</strong>
     </p>
   </div>
-
 </div>
 
