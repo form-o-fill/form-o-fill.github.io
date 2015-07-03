@@ -2,7 +2,7 @@
 (function tutorialScope(jQuery) {
   "use strict";
 
-  var extensionIds = ["bhokckolmdbgobnjlifcfigiihggcikh", "iebbppibdpjldhohknhgjoapijellonp", "kjcjehdmpjhomclllannjenijddhajfi"];
+  var extensionIds = ["bhokckolmdbgobnjlifcfigiihggcikh", "iebbppibdpjldhohknhgjoapijellonp", "kjcjehdmpjhomclllannjenijddhajfi", "ekhppdgcpfnmcplijchknkhikfchefhp"];
 
   var Tutorial = function() {
     this.steps = this.loadSteps();
