@@ -3,6 +3,25 @@ layout: tutorial
 ---
 <h1>Tour 1: Extracting rules</h1>
 
+<textarea class="rules" id="rules1">{
+  "workflows": [],
+  "rules": {
+    "tabSettings": [
+      {
+        "id": "1",
+        "name": "Rules Tour 1"
+      }
+    ],
+    "rules": [
+      {
+        "code": "var rules = [];\n",
+        "tabId": 1
+      }
+    ]
+  }
+}
+</textarea>
+
 <div class="alert alert-warning" role="alert">
   <strong>This is a live tutorial.</strong>
   If you are already using Form-O-Fill please export your rules and workflows <strong>before</strong> starting this tour.
@@ -41,6 +60,7 @@ layout: tutorial
 
 <div class="tuts">
 
+
   <div class="step" data-element=".alert-warning">
     <strong>Hello!</strong>
     <p>
@@ -48,7 +68,7 @@ layout: tutorial
     </p>
   </div>
 
-  <div class="step" data-element="form">
+  <div data-import-rules="#rules1" class="step" data-element="form">
     This will be the form we will work with. It contains the usual field types in this case a textfield , a radiobutton, a checkbox and a select field.
   </div>
 
@@ -81,7 +101,7 @@ layout: tutorial
     </p>
   </div>
 
-  <div class="step" data-element="form" data-position="right" data-trigger="+form-o-fill-overlay-form" data-overlay="false" data-buttons="false">
+  <div class="step" data-tutorial="1" data-element="form" data-position="right" data-trigger="+form-o-fill-overlay-form" data-overlay="false" data-buttons="false">
     <p>
       This red-ish element is used by Form-O-Fill to mark extractable <code>form</code> elements.
     </p>
@@ -93,7 +113,7 @@ layout: tutorial
     </p>
   </div>
   
-  <div class="step" data-tutorial="1" data-element=".top-right" data-trigger="-form-o-fill-overlay-form" data-position="bottom-right-aligned" data-buttons="false" data-overlay="false">
+  <div class="step" data-element=".top-right" data-trigger="-form-o-fill-overlay-form" data-position="bottom-right-aligned" data-buttons="false" data-overlay="false">
     <p>
       Form-O-Fill has now extracted the <code>form</code> fields and is ready to work with them:
     </p>
