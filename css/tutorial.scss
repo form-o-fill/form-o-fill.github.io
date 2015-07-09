@@ -12,8 +12,7 @@ body.tutorial {
     }
   }
 
-  article {
-    padding: 0 0 0 2rem;
+  .content {
     width: auto;
   }
 
@@ -41,11 +40,13 @@ body.tutorial {
 
   .tut-intro {
     float: left;
-    width: 49.3%;
+    width: 32%;
     height: 182px;
+    right: 10px;
+    margin-right: 10px;
 
-    &:nth-child(even) {
-      margin-left: 10px;
+    &:nth-child(3n+2) {
+      margin-right: 0;
     }
 
     .panel-heading {
