@@ -1,0 +1,107 @@
+---
+layout: tutorial
+---
+<h1>Tour 7: Workflows</h1>
+
+<textarea class="rules" id="rules1">{
+  "workflows": [],
+  "rules": {
+    "tabSettings": [
+      {
+        "id": "1",
+        "name": "Rules Tour 6"
+      }
+    ],
+    "rules": [
+      {
+        "code": "var rules = [{\n  \"url\": /tutorial\\/tour-6\\.html/,\n  \"name\": \"Tour 6 : Clicking on things\",\n  \"fields\": [{\n    \"selector\": \"input[type=text]\",\n    \"value\": \"filled by the rule\"\n  }, {\n    \"selector\": \"input[type=submit]\",\n    \"value\": function($e, data) {\n      $e.trigger(\"click\");\n    }\n  }]\n}\n];",
+        "tabId": 1
+      }
+    ]
+  }
+}</textarea>
+
+<div class="alert alert-warning" role="alert">
+  <strong>This is a live tutorial.</strong>
+  If you are already using Form-O-Fill please export your rules and workflows <strong>before</strong> starting this tour.
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Automating multiple pages</div>
+  <div class="panel-body">
+    <p>
+      Here you can learn how to chain multiple rules together to build a workflow.
+    </p>
+    <p>
+      Workflows execute multiple rules in a defined order. 
+    </p>
+    <p>
+      Combined with the use of <code>Libs.h.click</code> full page automation is possible.
+    </p>
+    <form action="#">
+      <input type="hidden" name="trigger" value="1" />
+      <label class="input-group">
+        input field:
+        <input class="form-control" type="text" name="text" value="" />
+      </label>
+    </form>
+  </div>
+</div>
+<button type="button" class="btn btn-lg btn-success tut-tour-start">Start Tour 7 : Workflows</button>
+
+<div class="tuts">
+  <div class="step" data-element=".alert-warning">
+    <strong>Welcome!</strong>
+    <p>
+      Before starting: Have you read this important message?
+    </p>
+  </div>
+
+  <div class="step" data-element="input[type=submit]" data-position="right">
+    <p>
+      This is a classical submit button.
+    </p>
+    <p>
+      We will try to fill the <code>text</code> field and then click the button.
+    </p>
+  </div>
+
+  <div class="step" data-element=".top-right" data-position="bottom-right-aligned" data-buttons="false" data-overlay="false" data-import-rules="#rules1">
+    <p>
+      I just imported a rule into Form-O-Fill.
+    </p>
+    <p>
+      Somewhere up here should be the Form-O-Fill action icon.<br />
+      It should looks like this:
+      <img src="/img/tutorial/form-button-one-match.png" />
+    </p>
+    <p><strong>Press it now</strong></p>
+  </div>
+
+  <div class="step" data-element="input[type=text]" data-position="right" data-trigger="*input[type=text]:/filled by the rule/">
+    <p>
+      When you look at the URL you can see that the form has been submitted.
+    </p>
+    <p>
+      The rule also filled the <code>input[type=text]</code> field before submitting.
+    </p>
+    <p>
+      Lets have a look at how this works.
+    </p>
+  </div>
+
+  <div class="step" data-buttons="false" data-tutorial="6" data-element=".top-right" data-position="bottom-right-aligned" data-overlay="false">
+    <p>
+      To access the options page when only one rule matches you must
+      <strong>right click on the icon</strong> and choose <strong>Options</strong>.
+    </p>
+    <p>
+      It looks like this in the german version of chrome:
+    </p>
+    <img src="/img/tutorial/options-by-right-clicking.png" />
+    <p>
+      <strong>Do that now!</strong>
+    </p>
+  </div>
+</div>
+
