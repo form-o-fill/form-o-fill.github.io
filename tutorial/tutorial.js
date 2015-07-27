@@ -119,12 +119,19 @@
 
   Tutorial.prototype.start = function() {
     var tutorial = this;
-    jQuery(".tut-tour-start").on("click", function() {
+
+    var run = function() {
       Tutorial.sendToExtension("backupCurrentRules");
       Tutorial.sendToExtension("activateTutorialOnOpenOptions", 0);
       tutorial.intro.start();
       tutorial.observeDomChanges();
-    });
+    };
+
+    jQuery(".tut-tour-start").on("click", run);
+
+    if(jQuery(".tuts").data("autostart") === true) {
+      run();
+    }
   };
 
   Tutorial.prototype.mutatedClassNames = function(nodeList) {
