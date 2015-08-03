@@ -1,0 +1,90 @@
+---
+layout: tutorial
+---
+<h1>Tour 9: Context object</h1>
+
+<textarea class="rules" id="rules1">{
+  "workflows": [],
+  "rules": {
+    "tabSettings": [
+      {
+        "id": "1",
+        "name": "Tour 9"
+      }
+    ],
+    "rules": [
+      {
+        "code": "var rules = [{\n  \"url\": /tutorial\\/tour-9\\.html/,\n  \"name\": \"Tour 9 : Context object (.url)\",\n  \"before\": function(resolve, context) {\n    resolve(context.url);\n  },\n  \"fields\": [{\n    \"selector\": \"textarea\",\n    \"value\": function($e, data) {\n      return JSON.stringify(data, null, 2);\n    } \n  }]\n}];",
+        "tabId": 1
+      }
+    ]
+  }
+}</textarea>
+
+<div class="alert alert-warning" role="alert">
+  <strong>This is a live tutorial.</strong>
+  If you are already using Form-O-Fill please export your rules and workflows <strong>before</strong> starting this tour.
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Context Object</div>
+  <div class="panel-body">
+    <form action="#">
+      <label class="input-group">
+        Field
+        <textarea class="form-control" name="field"></textarea>
+      </label>
+    </form>
+  </div>
+</div>
+<button type="button" class="btn btn-lg btn-success tut-tour-start">Start Tour 9 : Context object</button>
+
+<div class="tuts">
+  <div class="step" data-element=".alert-warning">
+    <strong>Welcome!</strong>
+    <p>
+      Before starting: Have you read this important message?
+    </p>
+  </div>
+
+  <div class="step" data-element=".form-control" data-position="right">
+    <p>
+      Hello and welcome to one of the more advanced topics.
+    </p>
+    <p>
+      The context object is a collection of methods available mainly in before functions.
+    </p>
+    <p>
+      It contains tools to find out on information about the page Form-O-Fill is currently working on (<code>context.url</code>)
+    </p>
+    <p>
+      You can query the page for HTML fragments (<code>context.findHtml()</code>) and you can save and load values (<code>context.storage.save / load</code>.
+    </p>
+  </div>
+
+  <div class="step" data-import-rules="#rules1" data-buttons="false" data-element=".form-control" data-position="right">
+    <p>
+      Let's start with the <code>.url</code> 
+    </p>
+    <p>
+      If you press the <b>Form-O-Fill browser icon</b> now (top right) you should see the values the <code>context.url</code> key contains.
+    </p>
+  </div>
+
+  <div class="step" data-element=".form-control" data-position="right" data-trigger="*.form-control:/tour-9.html/">
+    <p>
+      These values are all you would expect when calling <code>window.location</code> in the page. In fact they are exactly that.
+    </p>
+    <p>
+      They can be used to change data inside before funcions based on some parts of that object literal.
+    </p>
+    <p>
+      As usual let's have a look at the rules.
+    </p>
+    <p>
+      Please open the <b>options panel</b> via a right click on the extension icon next to the adress bar.
+    </p>
+  </div>
+
+</div>
+

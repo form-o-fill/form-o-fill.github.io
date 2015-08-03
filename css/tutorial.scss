@@ -58,6 +58,17 @@ body.tutorial {
     width: 400px;
   }
 
+  textarea.form-control {
+    font-size: 11px;
+    min-width: 500px;
+    min-height: 200px;
+    font-family: Helvetica, Arial, Monospace;
+  }
+
+  .introjs-tooltip {
+    min-width: 300px;
+  }
+
 }
 
 .top-right {

@@ -220,6 +220,7 @@
           }
 
           // *input[type=text]:input field content (again)
+          // *input[type=text]:/input field content regex/
           // Checks for selector val() == "text"
           if(typeToCheck === "*") {
             var selectorAndContent = triggerCls.split(":");
