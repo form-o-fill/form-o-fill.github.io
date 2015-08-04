@@ -1,0 +1,50 @@
+---
+layout: tutorial
+---
+<h1>Tour 9: Context object</h1>
+
+<textarea class="rules" id="rules1"></textarea>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Context Object</div>
+  <div class="panel-body">
+    <form action="#">
+      <label class="input-group">
+        Receiving field
+        <input type="text" class="form-control" name="field" value=""/>
+      </label>
+    </form>
+  </div>
+</div>
+
+<div class="tuts" data-autostart="true">
+
+  <div class="step" data-element="form" data-position="right">
+    <p>
+      Form-O-Fill is capable of <a href="tour-7.html">multi page workflows</a> but every chained rule acts only on its current page.
+    </p>
+    <p>
+      It you want to store some value inside the rule for page 1 and restore / use it in the rule for page 2 you can do so using <code>context.storage.get</code> and <code>context.storage.set</code>.
+    </p>
+    <p>
+      This gives you an overarching "session" like state for your workflow.
+    </p>
+  </div>
+
+  <div class="step" data-element="form" data-position="right">
+    <p>
+      The values stored in this manner are available inside <em>before</em> and <em>value</em> functions.
+    </p>
+  </div>
+
+  <div class="step" data-tutorial="11" data-import-rules="#rules1" data-buttons="false" data-element="form" data-position="right">
+    <p>
+      I imported a rule that uses the context to store the value of the <code>input</code> field and insert it on page 2 of this mini-workflow.
+    </p>
+    <p>
+      Try it!
+    </p>
+  </div>
+
+</div>
+
