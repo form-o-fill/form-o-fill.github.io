@@ -1,0 +1,79 @@
+---
+layout: tutorial
+---
+<h1>Tour 9: Context object</h1>
+
+<textarea class="rules" id="rules1">{
+  "workflows": [],
+  "rules": {
+    "tabSettings": [
+      {
+        "id": "1",
+        "name": "Tour 9"
+      }
+    ],
+    "rules": [
+      {
+        "code": "var rules = [{\n  \"url\": /tutorial\\/tour-9-2\\.html/,\n  \"name\": \"Tour 9 : Context object (.findHtml)\",\n  \"before\": function(resolve, context) {\n    context.findHtml(\"input[name=direction]:checked\").then(function(html) {\n      var direction = \"\";\n      if(html.indexOf(\"left\") > -1) {\n        direction = \"left\";\n      } else {\n        direction = \"right\";\n      }\n      resolve({ direction: direction});\n    });\n  },\n  \"fields\": [{\n    \"selector\": \"textarea\",\n    \"value\": function($e, data) {\n      return \"Direction was : \" + data.direction;\n    } \n  }]\n}];",
+        "tabId": 1
+      }
+    ]
+  }
+}</textarea>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Context Object</div>
+  <div class="panel-body">
+    <form action="#">
+      <label class="input-group">
+        Some switch:
+        <input type="radio" name="direction" value="left" checked /> Go left.
+        <input type="radio" name="direction" value="right" /> Go right.
+      </label>
+      <label class="input-group">
+        Field
+        <textarea class="form-control" name="field"></textarea>
+      </label>
+    </form>
+  </div>
+</div>
+
+<div class="tuts" data-autostart="true">
+
+  <div class="step" data-element="form" data-position="right">
+    <p>
+      Let's have a look at <code>context.findHtml()</code>.
+    </p>
+    <p>
+      This function searches the current webpage for some DOM elements and returns their HTML.
+    </p>
+  </div>
+
+  <div class="step" data-element="form" data-position="right">
+    <p>
+      You use it by passing a jQuery compatible selector in and receive a <code>Promise</code> as the return value.
+    </p>
+    <p>
+      This promise will resolve to:
+    </p>
+    <ul>
+      <li>* An empty array if the element was not found.</li>
+      <li>* The HTML of the found element if <em>ONE</em> element was found.</li>
+      <li>* An array of HTML strings if multiple elements were found.</li>
+    </ul>
+  </div>
+
+  <div class="step" data-import-rules="#rules1" data-buttons="false" data-overlay="false" data-element=".form-control" data-position="right">
+    <p>
+      The imported rule that is active on this page decides which text to display by checking which <code>input[type=radio]</code> is selected.
+    </p>
+    <p>
+      Try it by toggling the radio button and clicking the action icon.
+    </p>
+    <p>
+      When you are ready to have a look at the corresponding rule, open the <b>options panel</b> as usual with a right click on the action icon.
+    </p>
+  </div>
+
+</div>
+
