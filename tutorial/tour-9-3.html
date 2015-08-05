@@ -3,7 +3,32 @@ layout: tutorial
 ---
 <h1>Tour 9: Context object</h1>
 
-<textarea class="rules" id="rules1"></textarea>
+<textarea class="rules" id="rules1">{
+  "workflows": [
+    {
+      "id": 1,
+      "name": "Tour 9",
+      "steps": [
+        "Tour 9 : Context object (.storage.set)",
+        "Tour 9 : Context object (.storage.get)"
+      ]
+    }
+  ],
+  "rules": {
+    "tabSettings": [
+      {
+        "id": "1",
+        "name": "Tour 9"
+      }
+    ],
+    "rules": [
+      {
+        "code": "var rules = [{\n  \"url\": /tutorial\\/tour-9-3\\.html/,\n  \"name\": \"Tour 9 : Context object (.storage.set)\",\n  \"fields\": [{\n    \"selector\": \"input[name=field]\",\n    \"value\": function($e, data) {\n      // This saves the value accessible for all value functions, even\n      // on page 2\n      context.storage.set(\"tutorial-field\", $e.val());\n      // Don't fill it -> return null\n      return null;\n    }\n  }, {\n    \"selector\": \"input[type=submit]\",\n    \"value\": Libs.h.click\n  }]\n}, {\n  \"url\": /tutorial\\/tour-9-3-2\\.html/,\n  \"name\": \"Tour 9 : Context object (.storage.get)\",\n  \"fields\": [{\n    \"selector\": \"input[name=field]\",\n    \"value\": function($e, data) {\n      // restore value\n      return context.storage.get(\"tutorial-field\");\n    }\n  }]\n}\n];",
+        "tabId": 1
+      }
+    ]
+  }
+}</textarea>
 
 <div class="panel panel-default">
   <div class="panel-heading">Context Object</div>
@@ -20,7 +45,7 @@ layout: tutorial
 
 <div class="tuts" data-autostart="true">
 
-  <div class="step" data-element="form" data-position="right">
+  <div class="step" data-import-rules="#rules1" data-element="form" data-position="right">
     <p>
       Form-O-Fill is capable of <a href="tour-7.html">multi page workflows</a> but every chained rule acts only on its current page.
     </p>
@@ -43,7 +68,7 @@ layout: tutorial
       I imported a rule that uses the context to store the value of the <code>input</code> field and insert it on page 2 of this mini-workflow.
     </p>
     <p>
-      Try it!
+      Try it by selecting the blue item from the extensions popup menu. 
     </p>
   </div>
 

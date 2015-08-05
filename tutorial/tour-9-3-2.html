@@ -21,28 +21,19 @@ layout: tutorial
 
   <div class="step" data-element="form" data-position="right">
     <p>
-      Form-O-Fill is capable of <a href="tour-7.html">multi page workflows</a> but every chained rule acts only on its current page.
+      This is the second page of the workflow.
     </p>
     <p>
-      It you want to store some value inside the rule for page 1 and restore / use it in the rule for page 2 you can do so using <code>context.storage.get</code> and <code>context.storage.set</code>.
-    </p>
-    <p>
-      This gives you an overarching "session" like state for your workflow.
+      It received the <code>input</code> field value from the first page.
     </p>
   </div>
 
-  <div class="step" data-element="form" data-position="right">
+  <div class="step" data-tutorial="11" data-buttons="false" data-element="form" data-position="right">
     <p>
-      The values stored in this manner are available inside <em>before</em> and <em>value</em> functions.
-    </p>
-  </div>
-
-  <div class="step" data-tutorial="11" data-import-rules="#rules1" data-buttons="false" data-element="form" data-position="right">
-    <p>
-      I imported a rule that uses the context to store the value of the <code>input</code> field and insert it on page 2 of this mini-workflow.
+      Let's look at the code for this workflow.
     </p>
     <p>
-      Try it!
+      Please <b>open the options panel</b> by right clicking on the Form-O-Fill extension icon and selection "options".
     </p>
   </div>
 
