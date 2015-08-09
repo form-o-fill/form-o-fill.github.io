@@ -1,0 +1,79 @@
+---
+layout: tutorial
+---
+<h1>Tour 10 : Asking for input</h1>
+
+<textarea class="rules" id="rules1">{
+  "workflows": [],
+  "rules": {
+    "tabSettings": [
+      {
+        "id": "1",
+        "name": "Tour 10"
+      }
+    ],
+    "rules": [
+      {
+        "code": "var rules = [{\n  \"url\": /tutorial\\/tour-10\\.html/,\n  \"name\": \"Tour 10 : Asking for input\",\n  \"before\": function(resolve, context) {\n    var dir = \"left\";\n    var leftOrRight = prompt(\"Type 'left' or 'right' to continue\", dir);\n    if(leftOrRight === \"right\") {\n      dir = \"right\";\n    }\n    resolve(dir);\n  },\n  \"fields\": [{\n    \"selector\": \"input[type=text]\",\n    \"value\": function($e, data) {\n      return data;\n    }\n  }]\n}\n];",
+        "tabId": 1
+      }
+    ]
+  }
+}</textarea>
+
+<div class="alert alert-warning" role="alert">
+  <strong>This is a live tutorial.</strong>
+  If you are already using Form-O-Fill please export your rules and workflows <strong>before</strong> starting this tour.
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Asking for input</div>
+  <div class="panel-body">
+    <form action="#">
+      <label class="input-group">
+        Filled conditionally
+        <input type="text" class="form-control" name="field" value="a" />
+      </label>
+    </form>
+  </div>
+</div>
+<button type="button" class="btn btn-lg btn-success tut-tour-start">Start Tour 10 : Asking for input</button>
+
+<div class="tuts">
+  <div class="step" data-element=".alert-warning">
+    <strong>Welcome!</strong>
+    <p>
+      Before starting: Have you read this important message?
+    </p>
+  </div>
+
+  <div class="step" data-element="form" data-position="right">
+    <p>
+      Welcome to this quick tutorial on using the <code>prompt</code> function to ask for input <em>before</em> starting to execute the rules.
+    </p>
+    <p>
+      This can be useful if you want to change the data generated in a before function based on the users decision.
+    </p>
+  </div>
+
+  <div class="step" data-import-rules="#rules1" data-buttons="false" data-element="form" data-position="right">
+    <p>
+      If you press the <b>Form-O-Fill browser icon</b> now (next to adress bar) you should be asked a question.
+    </p>
+    <p>
+      <b>Try it now to continue.</b>
+    </p>
+  </div>
+
+  <div class="step" data-element="input[type=text]" data-position="right" data-trigger="*.form-control:/left|right/" data-buttons="false">
+    <p>
+      Very simple.
+    </p>
+    <p>
+      Open the options panel to have a look at the rules.
+    </p>
+    <p>Right click the action icon and choose "Options"</p>
+  </div>
+
+</div>
+
