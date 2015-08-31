@@ -1,0 +1,65 @@
+---
+layout: tutorial
+---
+<h1>Tour 11 : Sharing rules</h1>
+
+<div class="alert alert-warning" role="alert">
+  <strong>This is a live tutorial.</strong>
+  If you are already using Form-O-Fill please export your rules and workflows <strong>before</strong> starting this tour.
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Asking for input</div>
+  <div class="panel-body">
+    <form action="tour-11-2.html" method="get" id="form1">
+      <label class="input-group">
+        Form 1, Field 1:
+        <input type="text" class="form-control" name="field1" value="" />
+      </label>
+      <label class="input-group">
+        Form 1, Field 2:
+        <input type="text" class="form-control" name="field2" value="" />
+      </label>
+      <input class="btn btn-default" type="submit" value="Continue to page 2" />
+    </form>
+  </div>
+</div>
+<button type="button" class="btn btn-lg btn-success tut-tour-start">Start Tour 11 : Sharing rules</button>
+
+<div class="tuts">
+  <div class="step" data-element=".alert-warning">
+    <strong>Welcome!</strong>
+    <p>
+      Before starting: Have you read this important message?
+    </p>
+  </div>
+
+  <div class="step" data-element="form" data-position="right">
+    <p>
+      Welcome again!
+    </p>
+    <p>
+      In this tutorial you will learn how you can share the field definitions between rules.
+    </p>
+    <p>
+      This can be very handy if you like to work on the same page but with different datasets.
+    </p>
+  </div>
+
+  <div class="step" data-element="input[name=field2]" data-overlay="false" data-position="right" data-buttons="false">
+    <p>
+      If you press the <b>Form-O-Fill browser icon</b> now (next to adress bar) the two form fields will be filled.
+    </p>
+    <p>
+      This demo has a second page which has three form fields.
+    </p>
+    <p>
+      We will re-use the field definitions of the first page on the second page.
+    </p>
+    <p>
+      Press the "Continue to page 2" button.
+    </p>
+  </div>
+
+</div>
+
