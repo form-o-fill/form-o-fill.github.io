@@ -30,15 +30,17 @@ layout: tutorial
   <div class="panel-heading">Asking for input</div>
   <div class="panel-body">
     <form action="#" id="form2">
-      <label class="input-group">
-        Form 2, Field 1:
-        <input type="text" class="form-control" name="field1" value="" />
-      </label>
-      <label class="input-group">
-        Form 2, Field 2:
-        <input type="text" class="form-control" name="field2" value="" />
-      </label>
-      <label class="input-group">
+      <div class="fields1">
+        <label class="input-group">
+          Form 2, Field 1:
+          <input type="text" class="form-control" name="field1" value="" />
+        </label>
+        <label class="input-group">
+          Form 2, Field 2:
+          <input type="text" class="form-control" name="field2" value="" />
+        </label>
+      </div>
+      <label class="input-group fields2">
         Form 2, Field 3:
         <input type="text" class="form-control" name="field3" value="" />
       </label>
@@ -50,17 +52,29 @@ layout: tutorial
 
   <div class="step" data-element="form" data-position="right">
     <p>
-      This is the sond page with three form fields.
+      This is the second page with three form fields.
     </p>
   </div>
 
-  <div class="step" data-element="form" data-position="right" data-buttons="false">
+  <div class="step" data-import-rules="#rules1" data-element="form" data-position="right" data-buttons="false">
     <p>
       Press the Form-O-Fill button again to fill this form and continue.
     </p>
   </div>
 
-  <div class="step" data-import-rules="#rules1" data-trigger="*input[name=field3]:/form 2 field 3/" data-tutorial="13" data-element="form" data-position="right" data-buttons="false">
+  <div class="step" data-trigger="*input[name=field3]:/form 2 field 3/" data-element=".fields1" data-position="right">
+    <p>
+      As you can see the first two fields are filled with the values from the first rule which is referenced here as a shared rule.
+    </p>
+  </div>
+
+  <div class="step" data-element=".fields2" data-position="right">
+    <p>
+      The last field is filled by the second rule.
+    </p>
+  </div>
+
+  <div class="step" data-tutorial="13" data-element="form" data-position="right" data-buttons="false">
     <p>
       Open the options panel to have a look at the rules.
     </p>
