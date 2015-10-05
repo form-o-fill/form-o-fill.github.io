@@ -1,0 +1,84 @@
+---
+layout: tutorial
+---
+<h1>Tour 11 : Sharing rules</h1>
+
+<textarea class="rules" id="rules1">{
+  "workflows": [],
+  "rules": {
+    "tabSettings": [
+      {
+        "id": 1,
+        "name": "Rules"
+      }
+    ],
+    "rules": [
+      {
+        "code": "var rules = [{\n  url: /tutorial\\/tour-11\\.html/,\n  name: \"Tour 11: Sharing rules (form 1)\",\n  fields: [{\n    \"selector\": \"input[name=field1]\",\n    \"value\": \"form 1 field 1\"\n  }, {\n    \"selector\": \"input[name=field2]\",\n    \"value\": \"form 1 field 2\"\n  }]\n}, {\n  url: /tutorial\\/tour-11-2\\.html/,\n  name: \"Tour 11: Sharing rules (form 2)\",\n  fields: [{\n    \"import\": \"Tour 11: Sharing rules (form 1)\"\n  }, {\n    \"selector\": \"input[name=field3]\",\n    \"value\": \"form 2 field 3\"\n  }]\n}\n];",
+        "tabId": 1
+      }
+    ]
+  }
+}</textarea>
+
+<div class="alert alert-warning" role="alert">
+  <strong>This is a live tutorial.</strong>
+  If you are already using Form-O-Fill please export your rules and workflows <strong>before</strong> starting this tour.
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Asking for input</div>
+  <div class="panel-body">
+    <form action="#" id="form2">
+      <div class="fields1">
+        <label class="input-group">
+          Form 2, Field 1:
+          <input type="text" class="form-control" name="field1" value="" />
+        </label>
+        <label class="input-group">
+          Form 2, Field 2:
+          <input type="text" class="form-control" name="field2" value="" />
+        </label>
+      </div>
+      <label class="input-group fields2">
+        Form 2, Field 3:
+        <input type="text" class="form-control" name="field3" value="" />
+      </label>
+    </form>
+  </div>
+</div>
+
+<div class="tuts" data-autostart="true">
+
+  <div class="step" data-element="form" data-position="right">
+    <p>
+      This is the second page with three form fields.
+    </p>
+  </div>
+
+  <div class="step" data-import-rules="#rules1" data-element="form" data-position="right" data-buttons="false">
+    <p>
+      Press the Form-O-Fill button again to fill this form and continue.
+    </p>
+  </div>
+
+  <div class="step" data-trigger="*input[name=field3]:/form 2 field 3/" data-element=".fields1" data-position="right">
+    <p>
+      As you can see the first two fields are filled with the values from the first rule which is referenced here as a shared rule.
+    </p>
+  </div>
+
+  <div class="step" data-element=".fields2" data-position="right">
+    <p>
+      The last field is filled by the second rule.
+    </p>
+  </div>
+
+  <div class="step" data-tutorial="13" data-element="form" data-position="right" data-buttons="false">
+    <p>
+      Open the options panel to have a look at the rules.
+    </p>
+    <p>Right click the action icon and choose "Options"</p>
+  </div>
+
+</div>
