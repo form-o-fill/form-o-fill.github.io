@@ -1,0 +1,99 @@
+---
+layout: simple
+---
+<h1>One click remote rules installer</h1>
+
+<script>
+  $(function() {
+
+    $(".btn").on("click", function() {
+      var remoteRulesUrl = encodeURIComponent($("#remote-rules-url").val());
+      if(/^http.*\.js$/.test(remoteRulesUrl)) {
+        var href = window.location.origin + window.location.pathname.replace(/\/$/,"") + "?i=" + remoteRulesUrl;
+        $("#remote-url-link").attr("href", href).text(href);
+        $(".well").show();
+      }
+    });
+
+    // Check to see if we should tell the extension to install remote rules
+    if(window.location.search !== "") {
+      // These are test/build and production IDs of Form-O-Fill
+      var extensionIds = ["bhokckolmdbgobnjlifcfigiihggcikh", "iebbppibdpjldhohknhgjoapijellonp", "kjcjehdmpjhomclllannjenijddhajfi", "ekhppdgcpfnmcplijchknkhikfchefhp"];
+
+      var url = decodeURIComponent(window.location.search.match(/i=(.*\.js)/)[1]);
+      $("#modal-url").text(url);
+      $(".modal").modal("show");
+
+      $("#start-import").on("click", function() {
+        $(".modal").modal("hide");
+        extensionIds.forEach(function(extensionId) {
+          chrome.runtime.sendMessage(extensionId, {action: "importRemoteRules", message: url});
+        });
+      });
+    }
+  });
+</script>
+<div class="alert alert-info">
+  <p>
+    This page can be used to generate a link that will install the remote rules from a single URL.
+  </p>
+  <p>
+    Clicking on the link will install the remote rules so the user doesn't have to do it manually.
+  </p>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Insert your remote rule URL here (must be reachable by the browser)</div>
+  <div class="panel-body">
+    <form action="#">
+      <div class="form-group">
+        <label for="remote-rules-url">Remote rules URL</label>
+        <input type="text" value="" class="form-control" placeholder="http://something.com/rules.js" id="remote-rules-url"/>
+      </div>
+      <button type="submit" class="btn btn-default">Generate one-click installer link</button>
+    </form>
+    <div class="well alert alert-success" style="margin-top: 15px; display: none;">
+      <p>This is your one-click install URL:</p>
+      <a href="#" id="remote-url-link"></a>
+    </div>
+  </div>
+</div>
+
+<div class="pabel panel-default">
+  <p>
+    <strong>How does this work?</strong>
+  </p>
+  <p>
+    When you installed Form-O-Fill you allowed a single website, namely "http://form-o-fill.github.io/" to communicate with it.
+  </p>
+  <p>
+    This feature is used by Form-O-Fill to power its <a href="/tutorials">live tutorials</a>. It also allows this page to communicate with the extension and tell it to set the remote rules to that given as the <code>i=</code> parameter in the URL.
+  </p>
+
+  <p>
+    <strong>Is it secure?</strong>
+  </p>
+  <p>
+    Yes it is. All you have to do is make sure you trust the person that sent you the remote rules import URL.
+  </p>
+</div>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Remote rules import</h4>
+      </div>
+      <div class="modal-body">
+        Are you <strong>sure</strong> you want to import the rules supplied at<br />
+        <span id="modal-url"></span> ?
+      </div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <button type="button" id="start-import" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
