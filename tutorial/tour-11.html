@@ -26,6 +26,24 @@ layout: tutorial
 </div>
 <button type="button" class="btn btn-lg btn-success tut-tour-start">Start Tour 11 : Sharing rules</button>
 
+<textarea class="rules" id="rules1">{
+  "workflows": [],
+  "rules": {
+    "tabSettings": [
+      {
+        "id": 1,
+        "name": "Rules"
+      }
+    ],
+    "rules": [
+      {
+        "code": "var rules = [{\n  url: /tutorial\\/tour-11\\.html/,\n  name: \"Tour 11: Sharing rules (form 1)\",\n  fields: [{\n    \"selector\": \"input[name=field1]\",\n    \"value\": \"form 1 field 1\"\n  }, {\n    \"selector\": \"input[name=field2]\",\n    \"value\": \"form 1 field 2\"\n  }]\n}, {\n  url: /tutorial\\/tour-11-2\\.html/,\n  name: \"Tour 11: Sharing rules (form 2)\",\n  fields: [{\n    \"import\": \"Tour 11: Sharing rules (form 1)\"\n  }, {\n    \"selector\": \"input[name=field3]\",\n    \"value\": \"form 2 field 3\"\n  }]\n}\n];",
+        "tabId": 1
+      }
+    ]
+  }
+}</textarea>
+
 <div class="tuts">
   <div class="step" data-element=".alert-warning">
     <strong>Welcome!</strong>
@@ -46,7 +64,7 @@ layout: tutorial
     </p>
   </div>
 
-  <div class="step" data-element="input[name=field2]" data-overlay="false" data-position="right" data-buttons="false">
+  <div class="step" data-import-rules="#rules1" data-element="input[name=field2]" data-overlay="false" data-position="right" data-buttons="false">
     <p>
       If you press the <b>Form-O-Fill browser icon</b> now (next to adress bar) the two form fields will be filled.
     </p>
