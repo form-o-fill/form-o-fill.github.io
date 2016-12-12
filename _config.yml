@@ -3,6 +3,8 @@ permalink: /:title
 name: "Form-O-Fill"
 description: "The programmable form filler for developers"
 url: "http://form-o-fill.github.io"
+sass:
+  sass_dir: css
 defaults:
   -
     scope:
