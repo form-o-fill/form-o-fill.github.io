@@ -205,7 +205,13 @@ section {
   max-width: 960px;
   margin-bottom: 32px;
 
-  header.mdl-cell--3-col {
-    border :1px solid #aaa;
+  header.mdl-cell--3-col img {
+    border: 1px solid #aaa;
+  }
+}
+
+@media (max-width: 839px) and (min-width: 480px) {
+  .mdl-cell--9-col {
+    width: calc(100% - 320px);
   }
 }
