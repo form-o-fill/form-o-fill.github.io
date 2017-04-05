@@ -122,7 +122,7 @@
 
   Tutorial.prototype.downloadRules = function(base64EncodedExport) {
     if (typeof base64EncodedExport !== "undefined") {
-      var exportRules = atob(base64EncodedExport);
+      var exportRules = decodeURIComponent(escape(window.atob(base64EncodedExport)));
       var now = new Date();
       var fileName = "fof-complete-export-" + now.toISOString() + ".js";
 
