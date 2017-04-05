@@ -41,7 +41,7 @@
 
       step.tooltipClass = "step-" + stepIndex;
       step.position = tutorial.steps[stepIndex].position || "bottom";
-      if(!step.buttons) {
+      if (!step.buttons) {
         jQuery(".introjs-tooltipbuttons").hide();
         jQuery(".introjs-tooltipReferenceLayer").hide();
       } else {
@@ -49,7 +49,7 @@
         jQuery(".introjs-tooltipReferenceLayer").show();
       }
 
-      if(!step.overlay) {
+      if (!step.overlay) {
         jQuery(".introjs-overlay").hide();
       } else {
         jQuery(".introjs-overlay").show();
@@ -59,15 +59,18 @@
 
 
   // Send a message to the extension
-  Tutorial.sendToExtension = function(action, message) {
-
+  Tutorial.sendToExtension = function(action, message, responseCb) {
     var messageHash = {
       action: action,
       message: message
     };
 
+    if (typeof responseCb !== "function") {
+      responseCb = function() {};
+    }
+
     extensionIds.forEach(function(extensionId) {
-      chrome.runtime.sendMessage(extensionId, messageHash);
+      chrome.runtime.sendMessage(extensionId, messageHash, responseCb);
     });
   };
 
@@ -79,17 +82,17 @@
       /*eslint-enable no-underscore-dangle */
 
       // Send active tutorial number to Form-O-Fill extension
-      if(typeof step.tutorial !== "undefined") {
+      if (typeof step.tutorial !== "undefined") {
         Tutorial.sendToExtension("activateTutorialOnOpenOptions", step.tutorial);
       }
 
       // Send import rules request to Form-O-Fill
-      if(step.importRules) {
+      if (step.importRules) {
         Tutorial.sendToExtension("importDump", step.importRules);
       }
 
       var $helper = jQuery(".introjs-helperLayer");
-      if(!step.overlay) {
+      if (!step.overlay) {
         $helper.hide();
       } else {
         $helper.show();
@@ -117,6 +120,25 @@
     return intro;
   };
 
+  Tutorial.prototype.downloadRules = function(base64EncodedExport) {
+    if (typeof base64EncodedExport !== "undefined") {
+      var exportRules = atob(base64EncodedExport);
+      var now = new Date();
+      var fileName = "fof-complete-export-" + now.toISOString() + ".js";
+
+      // Creates and triggers a download from a string
+      var blob = new Blob([exportRules], { type: "application/json"});
+      var url = window.URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.download = fileName;
+      a.href = url;
+      document.querySelector("body").appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.querySelector("body").removeChild(a);
+    }
+  };
+
   Tutorial.prototype.start = function() {
     var tutorial = this;
 
@@ -127,9 +149,15 @@
       tutorial.observeDomChanges();
     };
 
+    // Click on start
     jQuery(".tut-tour-start").on("click", run);
 
-    if(jQuery(".tuts").data("autostart") === true) {
+    // Export current rules
+    jQuery("#tut-export-rules").on("click", function() {
+      Tutorial.sendToExtension("exportCurrentRules", null, tutorial.downloadRules);
+    });
+
+    if (jQuery(".tuts").data("autostart") === true) {
       run();
     }
   };
@@ -138,12 +166,12 @@
     var mutClasses = [];
     var aNodes = [].slice.call(nodeList);
 
-    if(aNodes.length > 0) {
+    if (aNodes.length > 0) {
       var classNames = aNodes.map(function (node) {
         return node.className;
       });
       classNames = classNames.filter(function (className) {
-         return className !== "";
+        return className !== "";
       });
       mutClasses = mutClasses.concat(classNames);
     }
@@ -154,8 +182,8 @@
   Tutorial.prototype.mutatedTexts = function(nodeList) {
     var mutTexts = [];
 
-    for(var i = 0; i < nodeList.length; i++) {
-      if(nodeList[i].textContent) {
+    for (var i = 0; i < nodeList.length; i++) {
+      if (nodeList[i].textContent) {
         mutTexts.push(nodeList[i].textContent);
       }
     }
@@ -174,39 +202,39 @@
         added = added.concat(tutorial.mutatedClassNames(mutation.addedNodes));
         contentAdded = contentAdded.concat(tutorial.mutatedTexts(mutation.addedNodes));
         removed = removed.concat(tutorial.mutatedClassNames(mutation.removedNodes));
-        if(typeof mutation.target.style !== "undefined") {
+        if (typeof mutation.target.style !== "undefined") {
           attrs = attrs.concat(mutation.target.style.cssText);
         }
       });
 
       /*eslint-disable complexity */
       tutorial.steps.every(function (step) {
-        if(typeof step.trigger !== "undefined") {
+        if (typeof step.trigger !== "undefined") {
           var typeToCheck = step.trigger[0];
           var triggerCls = step.trigger.substr(1);
 
           // + : element with class is visible
-          if(added.indexOf(triggerCls) !== -1 && typeToCheck === "+") {
+          if (added.indexOf(triggerCls) !== -1 && typeToCheck === "+") {
             // Trigger Step
             tutorial.intro.goToStep(step.index + 1);
             return false;
           }
 
           // - : element with class is invisible
-          if(removed.indexOf(triggerCls) !== -1 && typeToCheck === "-") {
+          if (removed.indexOf(triggerCls) !== -1 && typeToCheck === "-") {
             // Trigger Step
             tutorial.intro.goToStep(step.index + 1);
             return false;
           }
 
           // elements style attributes change
-          if(typeToCheck === "/") {
+          if (typeToCheck === "/") {
             var styleToCheckMatch = triggerCls.match(/^(.*?)\[(.*?)\]/);
             var found = attrs.filter(function (attr) {
               return attr.indexOf(styleToCheckMatch[2]) > -1;
             });
 
-            if(found.length > 0) {
+            if (found.length > 0) {
               tutorial.intro.goToStep(step.index + 1);
               return false;
             }
@@ -214,7 +242,7 @@
 
           // triggers when text gets visible SOMEWHERE ON THE PAGE
           // does not work with form field
-          if(typeToCheck === "?" && contentAdded.indexOf(triggerCls) > -1) {
+          if (typeToCheck === "?" && contentAdded.indexOf(triggerCls) > -1) {
             tutorial.intro.goToStep(step.index + 1);
             return false;
           }
@@ -222,12 +250,12 @@
           // *input[type=text]:input field content (again)
           // *input[type=text]:/input field content regex/
           // Checks for selector val() == "text"
-          if(typeToCheck === "*") {
+          if (typeToCheck === "*") {
             var selectorAndContent = triggerCls.split(":");
             var $e = jQuery(selectorAndContent[0]);
 
             var regex = selectorAndContent[1].match(/^\/(.*?)\/$/);
-            if(regex !== null && new RegExp(regex[1]).test($e.val())) {
+            if (regex !== null && new RegExp(regex[1]).test($e.val())) {
               // regex matching!
               $e.data("trigger", "");
               step.trigger = "";
@@ -235,7 +263,7 @@
               return false;
             }
 
-            if($e.val().indexOf(selectorAndContent[1]) > -1) {
+            if ($e.val().indexOf(selectorAndContent[1]) > -1) {
               $e.data("trigger", "");
               step.trigger = "";
               tutorial.intro.goToStep(step.index + 1);
