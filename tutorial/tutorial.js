@@ -2,7 +2,10 @@
 (function tutorialScope(jQuery) {
   "use strict";
 
-  var extensionIds = ["bhokckolmdbgobnjlifcfigiihggcikh", "iebbppibdpjldhohknhgjoapijellonp", "kjcjehdmpjhomclllannjenijddhajfi", "ekhppdgcpfnmcplijchknkhikfchefhp"];
+  var extensionIds = [
+    "iebbppibdpjldhohknhgjoapijellonp", // Live entension
+    "kjcjehdmpjhomclllannjenijddhajfi" // ext in dev mode directly from "src"
+  ];
 
   var Tutorial = function() {
     this.steps = this.loadSteps();
